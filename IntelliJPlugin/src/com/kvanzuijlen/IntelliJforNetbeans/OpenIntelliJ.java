@@ -33,15 +33,15 @@ public final class OpenIntelliJ implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            System.out.println("C:\\Program Files (x86)\\Jetbrains\\"+INTELLIJ_VERSION+"\\bin\\idea.exe");
             new ProcessBuilder("C:\\Program Files (x86)\\Jetbrains\\"+INTELLIJ_VERSION+"\\bin\\idea.exe").start();
         } catch (IOException error) {
             NotificationDisplayer displayer = NotificationDisplayer.getDefault();
             String downloadLink = "https://download-cf.jetbrains.com/idea/ideaIU-2016.3.4.exe";
             displayer.notify("Not found", NotificationDisplayer.Priority.HIGH.getIcon(), INTELLIJ_VERSION+" not found download this version from "+downloadLink+" (it's been copied to your clipboard)", null);
-            StringSelection stringSelection = new StringSelection(downloadLink);
-            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
-            clpbrd.setContents(stringSelection, null);
+            
+            StringSelection selectDownloadlink = new StringSelection(downloadLink);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(selectDownloadlink, null);
         }
     }
 }
